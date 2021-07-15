@@ -117,8 +117,8 @@ public class Main extends JFrame implements ActionListener {
 
 
     File file = new File("Resources/music.wav");
-    File theme_song = new File("Resources/AMONG US MAIN THEME SONG .wav");
-    File lofi_beats= new File("Resources/code-fi lofi beats .wav");
+    File theme_song = new File("Resources/AMONG US - OST - MAIN THEME SONG.wav");
+    File lofi_beats= new File("Resources/code-fi lofi beat.wav");
     Main() throws UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
 
 
