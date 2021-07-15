@@ -2,6 +2,6 @@
 
 This is my first java project :) 
 
-Imade it just for fun and to to learn more about java GUI 
+I made it just for fun and to learn more about java GUI 
 
 
