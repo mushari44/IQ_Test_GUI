@@ -11,6 +11,26 @@ public class Main extends JFrame implements ActionListener {
         new Main();
     }
 
+    JMenuBar menuBar = new JMenuBar();
+
+    JMenu filemenu = new JMenu("File");
+    JMenu Editmenu = new JMenu("Edit");
+
+
+
+
+
+    JMenuItem exitItem = new JMenuItem("Exit");
+
+
+    JMenu framecolormenu= new JMenu("Change color");
+
+
+    JMenuItem redcolor= new JMenuItem("red");
+    JMenuItem bluecolor= new JMenuItem("blue");
+    JMenuItem blackcolor= new JMenuItem("Black");
+    JMenuItem cyancolor= new JMenuItem("Cyan");
+    JMenuItem restoredefaults= new JMenuItem("Restore defaults");
 
     JButton kill;
     JButton red_vent;
@@ -117,14 +137,38 @@ public class Main extends JFrame implements ActionListener {
 
 
     File file = new File("Resources/music.wav");
-    File theme_song = new File("Resources/AMONG US - OST - MAIN THEME SONG.wav");
-    File lofi_beats= new File("Resources/code-fi lofi beat.wav");
+    File theme_song = new File("Resources/AMONG US MAIN THEME SONG .wav");
+    File lofi_beats= new File("Resources/code-fi lofi beats .wav");
     Main() throws UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
 
 
 
 
 
+        exitItem.addActionListener(this);
+
+        redcolor.addActionListener(this);
+        blackcolor.addActionListener(this);
+        bluecolor.addActionListener(this);
+        cyancolor.addActionListener(this);
+        restoredefaults.addActionListener(this);
+
+        filemenu.add(exitItem);
+
+
+        Editmenu.add(framecolormenu);
+        Editmenu.add(restoredefaults);
+
+
+        framecolormenu.add(redcolor);
+        framecolormenu.add(bluecolor);
+        framecolormenu.add(blackcolor);
+        framecolormenu.add(cyancolor);
+
+
+
+        menuBar.add(filemenu);
+        menuBar.add(Editmenu);
 
         audioInputStream6=AudioSystem.getAudioInputStream(lofi_beats);
 
@@ -165,10 +209,6 @@ public class Main extends JFrame implements ActionListener {
         AudioInputStream audioInputStream6=AudioSystem.getAudioInputStream(vent_in);
         vent_in_Clip=AudioSystem.getClip();
         vent_in_Clip.open(audioInputStream6);
-
-
-
-
 
 
 
@@ -255,10 +295,11 @@ public class Main extends JFrame implements ActionListener {
 
 
 
+
         red_vent = new JButton();
         red_vent.addActionListener(this);
 
-        red_vent.setBounds(0,400, 190, 180);
+        red_vent.setBounds(0,380, 180, 150);
         red_vent.setText(" Use Vent !! ");
         red_vent.setHorizontalTextPosition(JLabel.CENTER);
         red_vent.setVerticalTextPosition(JLabel.TOP);
@@ -266,6 +307,7 @@ public class Main extends JFrame implements ActionListener {
         red_vent.setIcon(Red_vent);
         red_vent.setForeground(Color.red.darker());
         red_vent.setBackground(new Color(45, 43, 43));
+        red_vent.setFocusable(false);
 
 
         kill = new JButton();
@@ -655,11 +697,15 @@ public class Main extends JFrame implements ActionListener {
         this.setLocation(400,100);
         this.setTitle(" The ultimate IQ test ");
         this.setIconImage(quizicon.getImage());
+        this.setJMenuBar(menuBar);
         this.add(button);
         this.add(button2);
         this.add(label);
-        this.getContentPane().setBackground(new Color(45, 43, 43));
+
+        this.getContentPane().setBackground(new Color(45, 43,43));
+
         this.setLayout(null);
+
 
         button16.setVisible(false);
         button6.setVisible(false);
@@ -671,6 +717,39 @@ public class Main extends JFrame implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==exitItem){
+            System.exit(0);
+        }
+
+        if (e.getSource()==blackcolor){
+            this.getContentPane().setBackground(Color.black);
+
+
+        }
+        if (e.getSource()==bluecolor){
+            this.getContentPane().setBackground(Color.blue);
+
+
+        }
+        if (e.getSource()==redcolor){
+            this.getContentPane().setBackground(Color.red);
+
+
+        }
+        if (e.getSource()==cyancolor){
+            this.getContentPane().setBackground(Color.cyan);
+
+
+        }
+        if (e.getSource()==restoredefaults){
+
+            this.getContentPane().setBackground(new Color(45, 43,43));
+        }
+
+
+
+
         if (e.getSource() == button) {
 
 
@@ -1070,7 +1149,7 @@ public class Main extends JFrame implements ActionListener {
 
 
         if (e.getSource() == button0) {
-            getContentPane().remove(button0);
+           button0.setVisible(false);
             repaint();
             textfield.setText("You're IQ is : "+ IQ);
 
