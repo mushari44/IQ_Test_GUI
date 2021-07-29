@@ -23,13 +23,9 @@ public class Main extends JFrame implements ActionListener {
     JMenuItem exitItem = new JMenuItem("Exit");
 
 
-    JMenu framecolormenu= new JMenu("Change color");
+    JMenuItem framecoloritem =new JMenuItem("Change color");
 
 
-    JMenuItem redcolor= new JMenuItem("red");
-    JMenuItem bluecolor= new JMenuItem("blue");
-    JMenuItem blackcolor= new JMenuItem("Black");
-    JMenuItem cyancolor= new JMenuItem("Cyan");
     JMenuItem restoredefaults= new JMenuItem("Restore defaults");
 
     JButton kill;
@@ -147,23 +143,17 @@ public class Main extends JFrame implements ActionListener {
 
         exitItem.addActionListener(this);
 
-        redcolor.addActionListener(this);
-        blackcolor.addActionListener(this);
-        bluecolor.addActionListener(this);
-        cyancolor.addActionListener(this);
+
+        framecoloritem.addActionListener(this);
         restoredefaults.addActionListener(this);
 
         filemenu.add(exitItem);
 
 
-        Editmenu.add(framecolormenu);
+        Editmenu.add(framecoloritem);
         Editmenu.add(restoredefaults);
 
 
-        framecolormenu.add(redcolor);
-        framecolormenu.add(bluecolor);
-        framecolormenu.add(blackcolor);
-        framecolormenu.add(cyancolor);
 
 
 
@@ -721,27 +711,15 @@ public class Main extends JFrame implements ActionListener {
         if(e.getSource()==exitItem){
             System.exit(0);
         }
-
-        if (e.getSource()==blackcolor){
-            this.getContentPane().setBackground(Color.black);
-
-
-        }
-        if (e.getSource()==bluecolor){
-            this.getContentPane().setBackground(Color.blue);
-
+        if(e.getSource()==framecoloritem){
+            JColorChooser colorChooser = new JColorChooser();
+            Color color = JColorChooser.showDialog(null ,"Pick a color" , Color.black);
+            this.getContentPane().setBackground(color);
 
         }
-        if (e.getSource()==redcolor){
-            this.getContentPane().setBackground(Color.red);
 
 
-        }
-        if (e.getSource()==cyancolor){
-            this.getContentPane().setBackground(Color.cyan);
 
-
-        }
         if (e.getSource()==restoredefaults){
 
             this.getContentPane().setBackground(new Color(45, 43,43));
